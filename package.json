@@ -1,0 +1,21 @@
+{
+  "name": "bedly-scrape",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/supervisor server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.2",
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "json2csv": "^4.1.2",
+    "puppeteer": "^1.4.0",
+    "request": "^2.86.0",
+    "supervisor": "^0.12.0"
+  }
+}
