@@ -27,13 +27,22 @@ async function scrapeBedly(url) {
     await page.goto(links[i]);
     let rentalInfo = await page.evaluate(() => {
       let $intro = document.querySelector('.room__intro');
-      let area = $intro.children[0].children[0].innerText;
-      let street = $intro.children[0].children[1].innerText;
+      let area = '';
+      let street = '';
       let cost = document.querySelector('.request-booking__header .title').innerText;
       let $amenities = document.querySelector('.room__amenities');
       let $descriptionPs = document.querySelectorAll('.room__description')[1].querySelectorAll('p');
       let description = Array.from($descriptionPs).reduce((acc, curr) => {return acc += curr.innerText}, '');
       let moveIn = document.querySelector('.grid__cell--is-moveIn input').value;
+
+      if ($intro) {
+        if ($intro.children.length) {
+          if ($intro.children[0].children.length) {
+            area = $intro.children[0].children[0].innerText;;
+            street = $intro.children[0].children[1].innerText;
+          }
+        }
+      }
 
       let bedCount = 0;
       let bathCount = 0;
@@ -102,35 +111,57 @@ async function scrapeBedly(url) {
   });
 }
 async function doAll() {
-  //may
-  // await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-05-21&max_price=3000');
-  // await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-05-24&max_price=3000');
-  // await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-05-27&max_price=3000');
-  // await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-05-30&max_price=3000');
-  //june
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-01&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-04&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-07&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-10&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-13&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-16&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-19&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-22&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-25&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-27&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-06-30&max_price=3000');
-  ///july
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-07-03&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-07-06&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-07-09&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-07-12&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-07-15&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-07-18&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-07-21&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-07-24&max_price=3000');
-  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-07-27&max_price=3000');
+  ///august
   await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-07-30&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-08-02&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-08-05&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-08-08&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-08-11&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-08-14&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-08-17&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-08-20&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-08-23&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-08-26&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-08-29&max_price=3000');
+
+  ///sept
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-09-02&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-09-05&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-09-08&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-09-11&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-09-14&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-09-17&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-09-20&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-09-23&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-09-26&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-09-29&max_price=3000');
+
+  //oct
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-01&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-04&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-07&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-10&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-13&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-16&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-19&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-22&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-25&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-28&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-10-31&max_price=3000');
+
+  //nov
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-11-02&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-11-05&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-11-08&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-11-11&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-11-14&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-11-17&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-11-20&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-11-23&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-11-26&max_price=3000');
+  await scrapeBedly('https://bedly.com/s/New-York--NY--New-York--United-States?start_date=2018-11-29&max_price=3000');
 }
+
 doAll();
 
 app.use(compression());
