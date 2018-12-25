@@ -56,7 +56,7 @@ async function scrapeBedly(url) {
         // amLists[1] /// "the unit"
         // amLists[2] /// "utilities"
         // amLists[3] /// "essentials & extras"
-      let theUnit =  Array.from(amLists[1].querySelectorAll('p')).map((p) => {return p.innerText.toLowerCase();});
+      let theUnit =  Array.from(amLists[1].querySelectorAll('p')).map((p) => {return p ? p.innerText.toLowerCase() : "";});
       theUnit.forEach((item) => {
         if (item.includes('bathroom')) {
           bathCount = parseFloat(item); /// 1.5 is an option
@@ -70,7 +70,7 @@ async function scrapeBedly(url) {
           dishwasher = true;
         }
       });
-      let essentialsAndExtras = Array.from(amLists[3].querySelectorAll('p')).map((p) => {return p.innerText.toLowerCase();});
+      let essentialsAndExtras = Array.from(amLists[3].querySelectorAll('p')).map((p) => {return p ? p.innerText.toLowerCase() : "";});
       essentialsAndExtras.forEach((item) => {
         if (item.includes('roof')) {
           rooftop = true;
